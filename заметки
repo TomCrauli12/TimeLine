@@ -1,0 +1,173 @@
+написать страницу с банами пользователей ?
+
+
+
+
+
+
+Достаточно красивая полу готовая карточка
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обрезатель текста</title>
+    <style>
+        .news_conteiner {
+            display: flex;
+            border: 1px solid #eee;
+            margin: 20px auto;
+            max-width: 800px;
+            font-family: Arial, sans-serif;
+        }
+        .image_news {
+            flex: 1;
+            min-width: 300px;
+        }
+        .image_news_conteiner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .info_news {
+            flex: 2;
+            padding: 20px;
+            position: relative;
+        }
+        .title_news h1 {
+            margin: 0 0 15px 0;
+            font-size: 22px;
+            color: #333;
+        }
+        .info_news p {
+            margin: 10px 0;
+            line-height: 1.5;
+            color: #555;
+        }
+        .expand-btn {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .expand-btn:hover {
+            text-decoration: underline;
+        }
+        .admin_buttons {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        .admin_buttons a {
+            color: #666;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 13px;
+        }
+        .admin_buttons a:hover {
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Пример новости 1 -->
+    <div class="news_conteiner">
+        <div class="image_news">
+            <div class="image_news_conteiner">
+                <img src="./images_news/a1ykbhj.jpg" alt="Новость">
+            </div>
+        </div>
+        <div class="info_news">
+            <div class="title_news">
+                <h1>Название новой технологии</h1>
+            </div>
+            <div class="text_news_conteiner">
+                <p>Сегодня компания представила инновационную разработку в области искусственного интеллекта. Новый алгоритм позволяет значительно ускорить обработку естественного языка, достигая рекордных показателей точности. По словам разработчиков, система способна понимать сложные запросы и контекстные зависимости, что выводит человеко-машинное взаимодействие на качественно новый уровень. Особенностью технологии является её способность адаптироваться к различным предметным областям без необходимости полного переобучения модели.</p>
+                <a href="#" class="expand-btn">читать далее →</a>
+            </div>
+            <div class="admin_buttons">
+                <a href="#">Редактировать</a>
+                <a href="#">Удалить</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Пример новости 2 -->
+    <div class="news_conteiner">
+        <div class="image_news">
+            <div class="image_news_conteiner">
+                <img src="./images_news/a1ykbhj.jpg" alt="Новость">
+            </div>
+        </div>
+        <div class="info_news">
+            <div class="title_news">
+                <h1>Изменения в экологическом законодательстве</h1>
+            </div>
+            <div class="text_news_conteiner">
+                <p>Правительство внесло поправки в экологическое законодательство, ужесточив требования к промышленным предприятиям. Новые нормы предусматривают значительное сокращение допустимых выбросов вредных веществ и вводят прогрессивную шкалу штрафов за нарушения. Эксперты отмечают, что эти изменения потребуют от компаний существенных инвестиций в модернизацию оборудования, но в долгосрочной перспективе окупятся за счёт улучшения экологической ситуации и здоровья населения. Особое внимание уделяется предприятиям химической и металлургической промышленности.</p>
+                <a href="#" class="expand-btn">читать далее →</a>
+            </div>
+            <div class="admin_buttons">
+                <a href="#">Редактировать</a>
+                <a href="#">Удалить</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const allTextContainers = document.querySelectorAll('.text_news_conteiner');
+            const maxChars = 200;
+
+            allTextContainers.forEach(container => {
+                const paragraph = container.querySelector('p');
+                const readMoreBtn = container.querySelector('.expand-btn');
+                
+                // Сохраняем оригинальный текст
+                const originalText = paragraph.textContent.trim();
+                
+                // Пропускаем короткие тексты
+                if (originalText.length <= maxChars) {
+                    readMoreBtn.classList.add('hidden');
+                    return;
+                }
+                
+                // Находим последний пробел перед 200-м символом
+                let lastSpace = originalText.lastIndexOf(' ', maxChars);
+                if (lastSpace === -1) lastSpace = maxChars; // если нет пробелов
+                
+                // Обрезаем текст до последнего пробела
+                const shortText = originalText.substring(0, lastSpace) + '...';
+                paragraph.textContent = shortText;
+                
+                // Обработчик для кнопки "читать далее"
+                readMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    paragraph.textContent = originalText;
+                    readMoreBtn.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
