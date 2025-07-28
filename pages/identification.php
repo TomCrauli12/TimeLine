@@ -2,6 +2,12 @@
 session_start();
 
 require_once '../DB/db.php';
+
+if (isset($_SESSION['id'])):
+  header("Location: ../index.php");
+else:
+  
+endif;
 ?>
 
 

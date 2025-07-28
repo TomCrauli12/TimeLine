@@ -8,6 +8,13 @@ if (isset($_SESSION['error_message'])) {
 }
 
 
+if (isset($_SESSION['id'])):
+  header("Location: ../index.php");
+else:
+  
+endif;
+
+
 ?>
 
 
