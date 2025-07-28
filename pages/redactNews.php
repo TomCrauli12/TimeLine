@@ -32,9 +32,22 @@ endif;
             
         <label>Description</label>
         <textarea name="description" id="" placeholder="Информация"><?=$NewsPosts['description']?></textarea>
-    
+
+        <label>shortDescription</label>
+        <textarea name="shortDescription" id="myTextarea" rows="4" cols="50" oninput="limitText(this, 150)" placeholder="Информация"><?=$prePosts['shortDescription']?></textarea>
+        <p id="charCount">Осталось символов: 150</p>
+
         <button class="button" type="submit">Сохранить изменения</button>
     </form>
+
+    <script>
+        function limitText(field, maxChar) {
+            if (field.value.length > maxChar) {
+                field.value = field.value.substring(0, maxChar);
+            }
+            document.getElementById("charCount").innerText = "Осталось символов: " + (maxChar - field.value.length);
+        }
+    </script>
 </body>
 </html>
 

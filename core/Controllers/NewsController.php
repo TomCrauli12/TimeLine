@@ -20,9 +20,11 @@
 
         $description = $_POST['description'];
 
+        $shortDescription = $_POST['shortDescription'];
+
         $id = $_GET['id'];
 
-        MainNews::redactMainNews($title, $description, $id);
+        MainNews::redactMainNews($title, $description, $shortDescription, $id);
 
         header("Location: ../../index.php");
 
@@ -30,8 +32,6 @@
 
 
         elseif($_GET['action']=="deletedNews"){
-        
-            var_dump($_GET['id']);
 
         $id = $_GET['id'];
 
@@ -47,9 +47,11 @@
 
         $description = $_POST['description'];
 
+        $shortDescription = $_POST['shortDescription'];
+
         $id = $_GET['id'];
 
-        News::redactNews($title, $description, $id);
+        News::redactNews($title, $description, $shortDescription, $id);
 
         header("Location: ../../index.php");
 

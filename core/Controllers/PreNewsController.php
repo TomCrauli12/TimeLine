@@ -11,6 +11,8 @@
 
         $description = $_POST['description'];
 
+        $shortDescription = $_POST['shortDescription'];
+
         $glavImage = $_FILES['glavImage']['name'];
 
         $imageTwo = $_FILES['imageTwo']['name'];
@@ -19,7 +21,7 @@
         
         $date = date('Y-m-d H:i');
 
-        PreNews::addPreNews($title, $description, $glavImage, $imageTwo, $imageThree, $author, $date);
+        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date);
 
         header("Location: ../../pages/preNews.php");
     }
@@ -41,9 +43,11 @@
 
         $description = $_POST['description'];
 
+        $shortDescription = $_POST['shortDescription'];
+
         $id = $_GET['id'];
 
-        PreNews::redactPreNews($title, $description, $id);
+        PreNews::redactPreNews($title, $description, $shortDescription, $id);
 
         header("Location: ../../pages/preNews.php");
     }
@@ -55,6 +59,8 @@
 
         $description = $_GET['description'];
 
+        $shortDescription = $_GET['shortDescription'];
+
         $glavImage = $_GET['glavImage'];
 
         $imageTwo = $_GET['imageTwo'];
@@ -65,7 +71,7 @@
         
         $date = date('Y-m-d H:i');
 
-        PreNews::addPreNews($title, $description, $glavImage, $imageTwo, $imageThree, $author, $date);
+        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date);
 
         header("Location: ../../pages/preNews.php");
     }

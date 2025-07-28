@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../DB/DB.php';
 
 class PreNews {
-    static function addPreNews($title, $description, $glavImage, $imageTwo, $imageThree, $author, $date) {
+    static function addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date) {
         $conn = DB::getConnection();
 
         //переменные для генерации индивидуамльных имен
@@ -35,8 +35,8 @@ class PreNews {
             }
         }
 
-        $query = $conn->prepare("INSERT INTO `PrePosts` (`title`, `description`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$title, $description, $glavImageName, $imageTwoName, $imageThreeName, $author, $date]);
+        $query = $conn->prepare("INSERT INTO `PrePosts` (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$title, $description, $shortDescription, $glavImageName, $imageTwoName, $imageThreeName, $author, $date]);
     }
 
 
@@ -48,20 +48,20 @@ class PreNews {
     }
     
 
-    static function redactPreNews($title, $description, $id){
+    static function redactPreNews($title, $description, $shortDescription, $id){
         $conn = DB::getConnection();
 
-        $query = $conn->prepare("UPDATE PrePosts SET `title` = ?, `description` = ? WHERE `id` = ?");
-        $query->execute([$title, $description, $id]);
+        $query = $conn->prepare("UPDATE PrePosts SET `title` = ?, `description` = ?, `shortDescription` = ? WHERE `id` = ?");
+        $query->execute([$title, $description, $shortDescription, $id]);
     }
 
 
-    static function publishNews($title, $description, $glavImage, $imageTwo, $imageThree, $author, $date){
+    static function publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date){
         $conn = DB::getConnection();
         
         try {
-            $query = $conn->prepare("INSERT INTO News (`title`, `description`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $query->execute([$title, $description, $glavImage, $imageTwo, $imageThree, $author, $date]);
+            $query = $conn->prepare("INSERT INTO News (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->execute([$title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date]);
         } catch (PDOException $e) {
             error_log("Ошибка при публикации новости: " . $e->getMessage());
             echo "Ошибка при публикации новости.";
@@ -69,12 +69,12 @@ class PreNews {
     }
 
     
-    static function publishMainNews($title, $description, $glavImage, $imageTwo, $imageThree, $author, $date){
+    static function publishMainNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date){
         $conn = DB::getConnection();
         
         try {
-            $query = $conn->prepare("INSERT INTO MainNews (`title`, `description`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $query->execute([$title, $description, $glavImage, $imageTwo, $imageThree, $author, $date]);
+            $query = $conn->prepare("INSERT INTO MainNews (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->execute([$title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date]);
         } catch (PDOException $e) {
             error_log("Ошибка при публикации новости: " . $e->getMessage());
             echo "Ошибка при публикации новости.";

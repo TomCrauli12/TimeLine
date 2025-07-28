@@ -9,13 +9,14 @@ if ($_GET['action'] == "publishMainNews") {
     $preNewsId = $_GET['id'];
 
     $conn = DB::getConnection();
-    $query = $conn->prepare("SELECT `title`, `description`, `glavImage`, `imageTwo`, `imageThree`, `author` FROM PrePosts WHERE id = ?");
+    $query = $conn->prepare("SELECT `title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author` FROM PrePosts WHERE id = ?");
     $query->execute([$preNewsId]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($data) {
         $title = $data['title'];
         $description = $data['description'];
+        $shortDescription = $data['shortDescription'];
         $glavImage = $data['glavImage'];
         $imageTwo = $data['imageTwo'];
         $imageThree = $data['imageThree'];
@@ -30,10 +31,11 @@ if ($_GET['action'] == "publishMainNews") {
             $oldMainNews = $oldMainNewsQuery->fetch(PDO::FETCH_ASSOC);
 
             if ($oldMainNews) {
-                $insertNewsQuery = $conn->prepare("INSERT INTO News (title, description, glavImage, imageTwo, imageThree, author, date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $insertNewsQuery = $conn->prepare("INSERT INTO News (title, description, shortDescription, glavImage, imageTwo, imageThree, author, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $insertNewsQuery->execute([
                     $oldMainNews['title'],
                     $oldMainNews['description'],
+                    $oldMainNews['shortDescription'],
                     $oldMainNews['glavImage'],
                     $oldMainNews['imageTwo'],
                     $oldMainNews['imageThree'],
@@ -46,7 +48,7 @@ if ($_GET['action'] == "publishMainNews") {
             }
         }
 
-        PreNews::publishMainNews($title, $description, $glavImage, $imageTwo, $imageThree, $author, $date);
+        PreNews::publishMainNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date);
 
         $deletePrePostQuery = $conn->prepare("DELETE FROM PrePosts WHERE id = ?");
         $deletePrePostQuery->execute([$preNewsId]);

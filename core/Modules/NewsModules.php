@@ -14,11 +14,11 @@ class MainNews {
     }
 
     
-    static function redactMainNews($title, $description, $id){
+    static function redactMainNews($title, $description, $shortDescription, $id){
         $conn = DB::getConnection();
 
-        $query = $conn->prepare("UPDATE MainNews SET `title` = ?, `description` = ? WHERE `id` = ?");
-        $query->execute([$title, $description, $id]);
+        $query = $conn->prepare("UPDATE MainNews SET `title` = ?, `description` = ?, `shortDescription` = ? WHERE `id` = ?");
+        $query->execute([$title, $description, $shortDescription, $id]);
     }
 }
 
@@ -35,11 +35,11 @@ class News {
     }
 
     
-    static function redactNews($title, $description, $id){
+    static function redactNews($title, $description, $shortDescription, $id){
         $conn = DB::getConnection();
 
-        $query = $conn->prepare("UPDATE News SET `title` = ?, `description` = ? WHERE `id` = ?");
-        $query->execute([$title, $description, $id]);
+        $query = $conn->prepare("UPDATE News SET `title` = ?, `description` = ?, `shortDescription` = ? WHERE `id` = ?");
+        $query->execute([$title, $description, $shortDescription, $id]);
     }
 
 }

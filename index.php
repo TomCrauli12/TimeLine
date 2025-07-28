@@ -78,6 +78,7 @@
                     <div class="text-content">
                         <h1><?=$MainNews['title']?></h1>
                         <p><?=$MainNews['description']?></p>
+                        <!-- <p><?=$MainNews['date']?></p> -->
                         <br>
                         <div class="admin_button">
                             <a href="./core/Controllers/NewsController.php?action=deletedMainNews&&id=<?=$MainNews['id']?>">удалить</a>
