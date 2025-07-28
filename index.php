@@ -74,11 +74,11 @@
             if ($MainNews) {
         ?>
                 <div class="main_image_news_conteiner">
-                    <img src="./imageNews/<?=$MainNews['glavImage']?>" alt="" class="bg-main-image">
+                    <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><img src="./imageNews/<?=$MainNews['glavImage']?>" alt="" class="bg-main-image"></a>
                     <div class="text-content">
-                        <h1><?=$MainNews['title']?></h1>
-                        <p><?=$MainNews['shortDescription']?></p>
-                        <!-- <p><?=$MainNews['date']?></p> -->
+                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><h1><?=$MainNews['title']?></h1></a>
+                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><p><?=$MainNews['shortDescription']?></p></a>
+                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><p><?=$MainNews['date']?></p></a>
                         <br>
                         <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
                         <div class="admin_button">
@@ -99,9 +99,11 @@
 
         <div class="additionally_main_news_info">
             <hr/>
+            <div class="additionally_main_news_info_list">
             <?php foreach($remainingMainNews as $key): ?>
                 <a href=""><?=$key['title']?></a>
             <?php endforeach; ?>
+            </div>
         </div>
          
     </section>
@@ -113,17 +115,17 @@
             <div class="news_conteiner">
                 <div class="image_news">
                     <div class="image_news_conteiner">
-                        <img src="./imageNews/<?=$key['glavImage']?>" alt="">
+                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><img src="./imageNews/<?=$key['glavImage']?>" alt=""></a>
                     </div>
                 </div>
                 <div class="info_news">
                     <div class="text_news_conteiner">
                         <div class="title_news">
-                            <h1><?=$key['title']?></h1>
+                            <h1><a href="./pages/NewsPage.php?id=<?=$key['id']?>"><?=$key['title']?></a></h1>
                         </div>
                         <div class="info_news">
                             <p id="shortDescription">
-                                <?=$key['shortDescription']?>
+                                <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><?=$key['shortDescription']?></a>
                             </p>
                         </div>
                     </div>
@@ -146,144 +148,3 @@
     <script src="./scripts/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-<style>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html, body{
-    background-color: rgb(31, 31, 31);
-}
-a{
-    text-decoration: none;
-    color: aliceblue;
-}
-h1,h2,h3,h4,h5,h6{
-    color: aliceblue;
-}
-p{
-    color: aliceblue;
-}
-ul{
-    list-style: none;
-}
-header{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2vw 5vw;
-    background-color: black;
-}
-.logo>h1>a{
-    font-size: 2.5vw;
-}
-.info_list{
-    display: flex;
-}
-.info_list>li{
-    padding: 0vw 0.5vw;
-}
-
-
-
-
-
-.main_news{
-    padding: 1vw 3vw;
-    display: flex;
-}
-.main_image_news_conteiner {
-    position: relative;
-    width: 60vw;
-    height: 35vw;
-    overflow: hidden;
-    color: white;
-}
-.bg-main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    object-fit: cover; 
-    z-index: 1;
-}
-h1, p {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-}
-.text-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-    padding: 20px;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 0px 0px 20px 20px;
-    color: white;
-}
-.additionally_main_news_info{
-    display: flex;
-}
-
-
-
-
-
-
-.news_section {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 1vw 3vw;
-}
-.news_conteiner{
-    padding: 20px;
-    margin: 5px;
-    border-radius: 20px;
-    background-color: black;
-}
-.image_news_conteiner>img{
-    width: 20vw;
-    border-radius: 10px;
-}
-.info_news{
-    width: 20vw;
-}
-.title_news>h1{
-    padding-bottom: 10px;
-}
-.expand-btn {
-    color: #0066cc;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 17px;
-}
-.admin_buttons{
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-hr{
-    border: none; 
-    background-color: #ffffff; 
-    width: 3px;
-    border-radius: 10px;
-    height: 100%; 
-    margin: 0 auto;
-    margin: 0vw 2vw;
-}
-
-</style>

@@ -79,9 +79,12 @@ h1, p {
     border-radius: 0px 0px 20px 20px;
     color: white;
 }
-.create-line {
-  width: 200px;
-  border-top: 3px solid #32a1ce;
+.additionally_main_news_info{
+    display: flex;
+}
+.additionally_main_news_info_list{
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -100,7 +103,7 @@ h1, p {
     border-radius: 20px;
     background-color: black;
 }
-.image_news_conteiner>img{
+.image_news_conteiner>a>img{
     width: 20vw;
     border-radius: 10px;
 }
@@ -121,4 +124,12 @@ h1, p {
     display: flex;
     justify-content: space-between;
 }
-
+hr{
+    border: none; 
+    background-color: #ffffff; 
+    width: 3px;
+    border-radius: 10px;
+    height: 100%; 
+    margin: 0 auto;
+    margin: 0vw 2vw;
+}

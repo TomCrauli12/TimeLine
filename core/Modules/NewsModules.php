@@ -20,6 +20,20 @@ class MainNews {
         $query = $conn->prepare("UPDATE MainNews SET `title` = ?, `description` = ?, `shortDescription` = ? WHERE `id` = ?");
         $query->execute([$title, $description, $shortDescription, $id]);
     }
+
+
+    static function ShowMainNews($id){
+
+        $conn = DB::getConnection();
+
+        $query = $conn->prepare("SELECT * FROM MainNews WHERE id =?");
+
+        $query->execute([$id]);
+
+        $viewNews = $query->fetch();
+
+        return $viewNews;
+    }
 }
 
 
@@ -40,6 +54,19 @@ class News {
 
         $query = $conn->prepare("UPDATE News SET `title` = ?, `description` = ?, `shortDescription` = ? WHERE `id` = ?");
         $query->execute([$title, $description, $shortDescription, $id]);
+    }
+
+    static function ShowNews($id){
+
+        $conn = DB::getConnection();
+
+        $query = $conn->prepare("SELECT * FROM news WHERE id =?");
+
+        $query->execute([$id]);
+
+        $viewNews = $query->fetch();
+
+        return $viewNews;
     }
 
 }

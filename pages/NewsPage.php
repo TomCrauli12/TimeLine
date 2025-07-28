@@ -2,9 +2,13 @@
 session_start();
 
 require_once '../DB/DB.php';
+require_once '../core/Modules/NewsModules.php';
 
 $conn = DB::getConnection();
 
+$viewNews = News::ShowNews($_GET['id']);
+
+$viewMainNews = MainNews::ShowMainNews($_GET['id']);
 
 ?>
 
@@ -21,24 +25,28 @@ $conn = DB::getConnection();
 </head>
 <body>
     <div class="main_image_news_conteiner">
-        <img src="./imageNews/<?=$MainNews['glavImage']?>" alt="" class="bg-main-image">
+        <img src="../imageNews/<?=$viewNews['glavImage']?>" alt="" class="bg-main-image">
         <div class="text-content">
-            <h1><?=$MainNews['title']?></h1>
-            <p><?=$MainNews['shortDescription']?></p>
-            <!-- <p><?=$MainNews['date']?></p> -->
+            <h1><?=$viewNews['title']?></h1>
+            <p><?=$viewNews['shortDescription']?></p>
+            <p><?=$viewNews['date']?></p>
             <br>
-            <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
+        </div>
+    </div>
+    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
             <div class="admin_button">
                 <a href="./core/Controllers/NewsController.php?action=deletedMainNews&&id=<?=$MainNews['id']?>">удалить</a>
-                <a href="./pages/redactMainNews.php?id=<?=$MainNews['id']?>">редактировать</a>
+                <a href="./pages/redactMainNews.php?id=<?=$viewNews['id']?>">редактировать</a>
             </div>
             <?php else: ?>
             <?php endif; ?>
-        </div>
-    </div>
 
     <div class="descrNews">
-        
+        <p><?=$viewNews['description']?></p>
     </div>
+
+
+    <br>
+    <a href="../index.php">вернуться назад</a>
 </body>
 </html>

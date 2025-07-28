@@ -34,7 +34,7 @@ endif;
         <textarea name="description" id="" placeholder="Информация"><?=$MainNewsPosts['description']?></textarea>
 
         <label>shortDescription</label>
-        <textarea name="shortDescription" id="myTextarea" rows="4" cols="50" oninput="limitText(this, 150)" placeholder="Информация"><?=$prePosts['shortDescription']?></textarea>
+        <textarea name="shortDescription" id="myTextarea" rows="4" cols="50" oninput="limitText(this, 150)" placeholder="Информация"><?=$MainNewsPosts['shortDescription']?></textarea>
         <p id="charCount">Осталось символов: 150</p>
 
         <button class="button" type="submit">Сохранить изменения</button>
