@@ -77,13 +77,16 @@
                     <img src="./imageNews/<?=$MainNews['glavImage']?>" alt="" class="bg-main-image">
                     <div class="text-content">
                         <h1><?=$MainNews['title']?></h1>
-                        <p><?=$MainNews['description']?></p>
+                        <p><?=$MainNews['shortDescription']?></p>
                         <!-- <p><?=$MainNews['date']?></p> -->
                         <br>
+                        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
                         <div class="admin_button">
                             <a href="./core/Controllers/NewsController.php?action=deletedMainNews&&id=<?=$MainNews['id']?>">удалить</a>
                             <a href="./pages/redactMainNews.php?id=<?=$MainNews['id']?>">редактировать</a>
                         </div>
+                        <?php else: ?>
+                        <?php endif; ?>
                     </div>
                 </div>
         <?php
@@ -119,17 +122,20 @@
                             <h1><?=$key['title']?></h1>
                         </div>
                         <div class="info_news">
-                            <p id="news-text-content">
-                                <?=$key['description']?>
+                            <p id="shortDescription">
+                                <?=$key['shortDescription']?>
                             </p>
-                            <a href="" class="expand-btn">читать далее →</a>
                         </div>
                     </div>
-                    
+
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
                     <div class="admin_buttons">
                         <a href="./core/Controllers/NewsController.php?action=deletedNews&&id=<?=$key['id']?>">удалить</a>
                         <a href="./pages/redactNews.php?id=<?=$key['id']?>">редактировать</a>
                     </div>
+                    <?php else: ?>
+
+                    <?php endif; ?>
                 </div>
             </div>
 

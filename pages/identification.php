@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../DB/db.php';
+require_once '../DB/DB.php';
 
 if (isset($_SESSION['id'])):
   header("Location: ../index.php");

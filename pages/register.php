@@ -1,5 +1,5 @@
 <?php
-require_once '../DB/db.php';
+require_once '../DB/DB.php';
 session_start();
 
 if (isset($_SESSION['error_message'])) {

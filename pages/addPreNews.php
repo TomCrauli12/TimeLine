@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../DB/db.php';
+require_once '../DB/DB.php';
 
 
 
@@ -29,10 +29,15 @@ require_once '../DB/db.php';
     </style>
     <form action="../core/Controllers/PreNewsController.php?action=addPreNews" method="post" enctype="multipart/form-data">
             <label>Title</label>
-            <input type="text" name="title" required="" placeholder="Заголовок">                 
+            <input type="text" name="title"  required="" placeholder="Заголовок">                 
             
             <label>Description</label>
-            <textarea name="description" id="" placeholder="Информация"></textarea>
+            <textarea name="description" rows="20" cols="80" id="" placeholder="Информация"></textarea>
+
+            <label>shortDescription</label>
+            <textarea name="shortDescription" id="myTextarea" rows="7" cols="50" oninput="limitText(this, 150)" placeholder="Информация"></textarea>
+            <p id="charCount">Осталось символов: 150</p>
+
             <label for="glavImage">Главное изображение</label>
             <input type="file" name="glavImage">
 
@@ -44,5 +49,14 @@ require_once '../DB/db.php';
             <br>
             <a href="../index.php">вернуться назад</a>
     </form>
+
+    <script>
+        function limitText(field, maxChar) {
+            if (field.value.length > maxChar) {
+                field.value = field.value.substring(0, maxChar);
+            }
+            document.getElementById("charCount").innerText = "Осталось символов: " + (maxChar - field.value.length);
+        }
+    </script>
 </body>
 </html>
