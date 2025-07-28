@@ -18,12 +18,6 @@
 
     $query = $conn->query('SELECT * FROM MainNews WHERE id != (SELECT MAX(id) FROM MainNews)');
     $remainingMainNews = $query->fetchAll();
-    
-    if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")):
-        
-    else:
-        
-    endif;
 
 ?>
 
