@@ -21,7 +21,9 @@
         
         $date = date('Y-m-d H:i');
 
-        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date);
+        $glavNews = $_POST['glavNews'];
+
+        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews);
 
         header("Location: ../../pages/preNews.php");
     }
@@ -71,7 +73,9 @@
         
         $date = date('Y-m-d H:i');
 
-        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date);
+        $glavNews = $_GET['glavNews'];
+
+        PreNews::publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews);
 
         header("Location: ../../pages/preNews.php");
     }

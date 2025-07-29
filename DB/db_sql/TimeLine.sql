@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Июл 28 2025 г., 09:27
+-- Время создания: Июл 29 2025 г., 07:26
 -- Версия сервера: 8.0.40
 -- Версия PHP: 8.3.14
 
@@ -31,20 +31,13 @@ CREATE TABLE `MainNews` (
   `id` int NOT NULL,
   `title` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `shortDescription` text COLLATE utf8mb4_general_ci NOT NULL,
   `glavImage` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `imageTwo` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `imageThree` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `author` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Дамп данных таблицы `MainNews`
---
-
-INSERT INTO `MainNews` (`id`, `title`, `description`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES
-(3, 'Индивидуамльное имя ', 'Индивидуамльное имя для каждого файла', 'glav_686d69a2095883.10374400.jpg', '', '', '1', '2025-07-08'),
-(4, 'Главная новость', 'главная новость на удаление и перенос в новости', '6884030ced98d1.78264037.jpg', '', '', '2', '2025-07-25');
 
 -- --------------------------------------------------------
 
@@ -56,23 +49,31 @@ CREATE TABLE `News` (
   `id` int NOT NULL,
   `title` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `shortDescription` text COLLATE utf8mb4_general_ci NOT NULL,
   `glavImage` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `imageTwo` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `imageThree` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `author` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
-  `date` varchar(250) COLLATE utf8mb4_general_ci NOT NULL
+  `date` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `glavNews` varchar(250) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `News`
 --
 
-INSERT INTO `News` (`id`, `title`, `description`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES
-(1, 'проверка ', 'проверка 123', 'a1ykbhj.jpg', 'IMG_9026.HEIC', '', '1', '2025-07-08 11:55'),
-(2, 'Новость вторая', 'Инофрмация о новости 2', 'a1ykbhj.jpg', '', '', '1', '2025-07-08 12:20'),
-(3, 'Новость 3', 'Информация о новости 3 а так же проверка на отправку как клавной новости с последующим изменением на другую ', 'a1ykbhj.jpg', '', '', '1', '2025-07-08'),
-(4, 'новость для главной старницы', 'проверка редактирования  ', 'a1ykbhj.jpg', '', '', '1', '2025-07-08'),
-(6, 'новость с изображением ', 'новость хммм ну она есть ', '6884dffd69acd3.54892545.jpg', '', '', '2', '2025-07-26 14:02');
+INSERT INTO `News` (`id`, `title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`, `glavNews`) VALUES
+(1, 'Главная новость 1', 'Главная новость 1 информация ', 'Главная новость 1 краткая информация ', '688875c793a803.15934748.jpg', '', '', '12', '2025-07-29 07:20', 'да'),
+(2, 'Главная новость 2', 'Главная новость 2 информация ', 'Главная новость 2 краткая информация ', '688875e25b9357.26737789.jpg', '', '', '12', '2025-07-29 07:20', 'да'),
+(3, 'Главная новость 3', 'Главная новость 3 информация ', 'Главная новость 3 краткая информация ', '68887607a44fe1.45187635.jpg', '', '', '12', '2025-07-29 07:20', 'да'),
+(4, 'Главная новость 4', 'Главная новость 4 информация ', 'Главная новость 4 краткая информация', '68887625dccbe0.65914027.jpg', '', '', '12', '2025-07-29 07:20', 'да'),
+(5, 'Главная новость 5', 'Главная новость 5 информация ', 'Главная новость 5 краткая информация ', '68887641093882.93198951.jpg', '', '', '12', '2025-07-29 07:20', 'да'),
+(6, 'Новость 1', 'Новость 1 информация ', 'Новость 1 краткая информация ', '688876656cf885.56484580.jpg', '', '', '12', '2025-07-29 07:21', 'нет'),
+(7, 'Новость 2', 'Новость 2', 'Новость 2 краткая информация о ней ', '6888768bc446d3.05630528.jpg', '', '', '12', '2025-07-29 07:21', 'нет'),
+(9, 'Новость 4', 'Новость 4 информация о ней ', 'Новость 4 краткая информация о ней ', '688876b75195a3.71731956.jpg', '', '', '12', '2025-07-29 07:22', 'нет'),
+(10, 'Новость 6', 'Новость 6 информация о ней ', 'Новость 6 краткая информация о ней ', '688876e1c46913.10648639.jpg', '', '', '12', '2025-07-29 07:23', 'нет'),
+(11, 'Новость 5', 'Новость 5 информация о ней ', 'Новость 5 краткая информация о ней ', '688876fb59b8c0.09758002.jpg', '', '', '12', '2025-07-29 07:23', 'нет'),
+(12, 'Новость 7 ', 'Новость 7 информация', 'Новость 7 краткая информация о ней ', '6888771a96bea9.88300947.jpg', '', '', '12', '2025-07-29 07:24', 'нет');
 
 -- --------------------------------------------------------
 
@@ -84,11 +85,13 @@ CREATE TABLE `PrePosts` (
   `id` int NOT NULL,
   `title` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `shortDescription` text COLLATE utf8mb4_general_ci NOT NULL,
   `glavImage` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `imageTwo` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `imageThree` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `author` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
-  `date` varchar(250) COLLATE utf8mb4_general_ci NOT NULL
+  `date` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `glavNews` varchar(200) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -150,19 +153,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `MainNews`
 --
 ALTER TABLE `MainNews`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `News`
 --
 ALTER TABLE `News`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `PrePosts`
 --
 ALTER TABLE `PrePosts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

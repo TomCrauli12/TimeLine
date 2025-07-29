@@ -5,33 +5,7 @@
 
     $author = $_SESSION['id'];
 
-    if($_GET['action']=="deletedMainNews"){
-
-        $id = $_GET['id'];
-
-        MainNews::deletedMainNews($id);
-
-        header("Location: ../../index.php");
-        
-    }
-    elseif($_GET['action']=="redactMainNews"){
-
-        $title = $_POST['title'];
-
-        $description = $_POST['description'];
-
-        $shortDescription = $_POST['shortDescription'];
-
-        $id = $_GET['id'];
-
-        MainNews::redactMainNews($title, $description, $shortDescription, $id);
-
-        header("Location: ../../index.php");
-
-    }
-
-
-        elseif($_GET['action']=="deletedNews"){
+    if ($_GET['action'] == "deletedNews") {
 
         $id = $_GET['id'];
 
@@ -41,7 +15,7 @@
 
     }
 
-        elseif($_GET['action']=="redactNews"){
+    elseif($_GET['action']=="redactNews"){
 
         $title = $_POST['title'];
 

@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../DB/DB.php';
 
 class PreNews {
-    static function addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date) {
+    static function addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews) {
         $conn = DB::getConnection();
 
         //переменные для генерации индивидуамльных имен
@@ -35,8 +35,8 @@ class PreNews {
             }
         }
 
-        $query = $conn->prepare("INSERT INTO `PrePosts` (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$title, $description, $shortDescription, $glavImageName, $imageTwoName, $imageThreeName, $author, $date]);
+        $query = $conn->prepare("INSERT INTO `PrePosts` (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`, `glavNews`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$title, $description, $shortDescription, $glavImageName, $imageTwoName, $imageThreeName, $author, $date, $glavNews]);
     }
 
 
@@ -55,26 +55,23 @@ class PreNews {
         $query->execute([$title, $description, $shortDescription, $id]);
     }
 
-
-    static function publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date){
+    static function publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews) {
         $conn = DB::getConnection();
-        
         try {
-            $query = $conn->prepare("INSERT INTO News (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $query->execute([$title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date]);
-        } catch (PDOException $e) {
-            error_log("Ошибка при публикации новости: " . $e->getMessage());
-            echo "Ошибка при публикации новости.";
-        }
-    }
-
-    
-    static function publishMainNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date){
-        $conn = DB::getConnection();
-        
-        try {
-            $query = $conn->prepare("INSERT INTO MainNews (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $query->execute([$title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date]);
+            if ($glavNews == 'да') {
+                $countQuery = $conn->query("SELECT COUNT(*) FROM News WHERE glavNews = 'да'");
+                $count = $countQuery->fetchColumn();
+                if ($count >= 5) {
+                    $oldestQuery = $conn->query("SELECT id FROM News WHERE glavNews = 'да' ORDER BY date ASC LIMIT 1");
+                    $oldestNews = $oldestQuery->fetchColumn();
+                    if ($oldestNews) {
+                        $updateQuery = $conn->prepare("UPDATE News SET glavNews = 'нет' WHERE id = ?");
+                        $updateQuery->execute([$oldestNews]);
+                    }
+                }
+            }
+            $query = $conn->prepare("INSERT INTO News (`title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `date`, `glavNews`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->execute([$title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews]);
         } catch (PDOException $e) {
             error_log("Ошибка при публикации новости: " . $e->getMessage());
             echo "Ошибка при публикации новости.";

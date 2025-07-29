@@ -4,7 +4,10 @@ require_once '../DB/DB.php';
 require_once '../core/Modules/NewsModules.php';
 $conn = DB::getConnection();
 
-$query = $conn->prepare('select * from MainNews where id = ?');
+
+
+
+$query = $conn->prepare('select * from News where id = ?');
 $query->execute([$_GET['id']]);
 $MainNewsPosts = $query->fetch();
 

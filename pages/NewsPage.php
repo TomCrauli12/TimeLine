@@ -8,8 +8,6 @@ $conn = DB::getConnection();
 
 $viewNews = News::ShowNews($_GET['id']);
 
-$viewMainNews = MainNews::ShowMainNews($_GET['id']);
-
 ?>
 
 
@@ -33,19 +31,16 @@ $viewMainNews = MainNews::ShowMainNews($_GET['id']);
             <br>
         </div>
     </div>
-    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
-            <div class="admin_button">
-                <a href="./core/Controllers/NewsController.php?action=deletedMainNews&&id=<?=$MainNews['id']?>">удалить</a>
-                <a href="./pages/redactMainNews.php?id=<?=$viewNews['id']?>">редактировать</a>
-            </div>
-            <?php else: ?>
-            <?php endif; ?>
-
     <div class="descrNews">
         <p><?=$viewNews['description']?></p>
     </div>
-
-
+    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
+        <div class="admin_button">
+            <a href="../core/Controllers/NewsController.php?action=deletedMainNews&&id=<?=$MainNews['id']?>">удалить</a>
+            <a href="./redactMainNews.php?id=<?=$viewNews['id']?>">редактировать</a>
+        </div>
+    <?php else: ?>
+    <?php endif; ?>
     <br>
     <a href="../index.php">вернуться назад</a>
 </body>

@@ -7,17 +7,17 @@
 
     $conn = DB::getConnection();
 
-    $query = $conn->query('select * from News');
+    $query = $conn->query("SELECT * FROM News WHERE glavNews = 'нет' ORDER BY date DESC");
     $News = $query->fetchAll();
 
     $query = $conn->query('select * from users');
     $users = $query->fetchAll();
 
-    $query = $conn->query('SELECT * FROM MainNews ORDER BY id DESC LIMIT 1');
-    $MainNews = $query->fetch();
+    $query = $conn->query("SELECT * FROM News WHERE id = (SELECT MAX(id) FROM News WHERE glavNews = 'да')");
+    $MainNews = $query->fetch(PDO::FETCH_ASSOC);
 
-    $query = $conn->query('SELECT * FROM MainNews WHERE id != (SELECT MAX(id) FROM MainNews)');
-    $remainingMainNews = $query->fetchAll();
+    $query = $conn->query("SELECT * FROM News WHERE glavNews = 'да' AND id != (SELECT MAX(id) FROM News WHERE glavNews = 'да')");
+    $remainingMainNews = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -69,31 +69,27 @@
 
 
     <section class="main_news">
-    
-        <?php         
-            if ($MainNews) {
-        ?>
-                <div class="main_image_news_conteiner">
-                    <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><img src="./imageNews/<?=$MainNews['glavImage']?>" alt="" class="bg-main-image"></a>
-                    <div class="text-content">
-                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><h1><?=$MainNews['title']?></h1></a>
-                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><p><?=$MainNews['shortDescription']?></p></a>
-                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><p><?=$MainNews['date']?></p></a>
-                        <br>
-                        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
-                        <div class="admin_button">
-                            <a href="./core/Controllers/NewsController.php?action=deletedMainNews&&id=<?=$MainNews['id']?>">удалить</a>
-                            <a href="./pages/redactMainNews.php?id=<?=$MainNews['id']?>">редактировать</a>
-                        </div>
-                        <?php else: ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-        <?php
-            } else {
-                echo "Нет новостей для отображения.";
-            }
-        ?>
+    <?php if ($MainNews): ?>
+    <div class="main_image_news_conteiner">
+        <a href="./pages/NewsPage.php?id=<?=$MainNews['id']?>"><img src="./imageNews/<?=$MainNews['glavImage']?>" alt="" class="bg-main-image"></a>
+        <div class="text-content">
+            <a href="./pages/NewsPage.php?id=<?=$MainNews['id']?>"><h1><?=$MainNews['title']?></h1></a>
+            <a href="./pages/NewsPage.php?id=<?=$MainNews['id']?>"><p><?=$MainNews['shortDescription']?></p></a>
+            <a href="./pages/NewsPage.php?id=<?=$MainNews['id']?>"><p><?=$MainNews['date']?></p></a>
+            <br>
+            <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
+            <div class="admin_button">
+                <a href="./core/Controllers/NewsController.php?action=deletedNews&&id=<?=$MainNews['id']?>">удалить</a>
+                <a href="./pages/redactNews.php?id=<?=$MainNews['id']?>">редактировать</a>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+    else:
+        echo "<p>Нет главных новостей для отображения.</p>";
+    endif;
+    ?>
 
 
 
@@ -101,7 +97,7 @@
             <hr/>
             <div class="additionally_main_news_info_list">
             <?php foreach($remainingMainNews as $key): ?>
-                <a href=""><?=$key['title']?></a>
+                <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><?=$key['title']?></a>
             <?php endforeach; ?>
             </div>
         </div>

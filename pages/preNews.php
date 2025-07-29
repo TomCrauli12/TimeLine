@@ -46,12 +46,12 @@ endif;
             <p>Автор: <?=$userdata['name']?></p>
             <p>Роль автора: <?=$userdata['role']?></p>
             <p>Новость предожена: <?=$key['date']?></p>
+            <p>Главная новость: <?=$key['glavNews']?></p>
             <br>
             <div class="admin_buttons">
                 <a href="../core/Controllers/PreNewsController.php?action=deleted&&id=<?=$key['id']?>">Отказать</a>
                 <a href="./redactPreNews.php?id=<?=$key['id']?>">Редактировать</a>
-                <a href="../core/Controllers/controolerDEM.php?action=publishNews&&id=<?=$key['id']?>">Опубликовать</a>
-                <a href="../core/Controllers/AddMainNewsController.php?action=publishMainNews&&id=<?=$key['id']?>">Опубликовать как главную новость</a>
+                <a href="../core/Controllers/publishNewsController.php?action=publishNews&&id=<?=$key['id']?>">Опубликовать</a>
             </div>
             <br>
         <?php endforeach; ?>
