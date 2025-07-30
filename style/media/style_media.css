@@ -1,0 +1,26 @@
+
+@media only screen and (max-width: 600px) {
+    .news_section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .news_section {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+}
+
+
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+
+}
+
+
+@media only screen and (min-width: 1201px) {
+
+}
