@@ -90,12 +90,17 @@ endif;
                 <input type="file" name="imageTwo">
                 <input type="file" name="imageThree">
     
-                <p>сделать главной новостью</p>
-                <input type="radio" id="0" name="glavNews" value="нет" checked/>
-                <label for="0">Нет</label>
-    
-                <input type="radio" id="1" name="glavNews" value="да"/>
-                <label for="1">Да</label>
+                <div class="container_input" style="padding: 10px 0px;">
+                    <p>Сделать главной новостью</p>
+                        <label class="role-label">
+                            <input type="radio" class="role-input" id="0" name="glavNews" value="нет" checked/>
+                            <span class="role-span">Нет</span>
+                        </label>
+                        <label class="role-label">
+                            <input type="radio" class="role-input" id="1" name="glavNews" value="да"/>
+                            <span class="role-span">Да</span>
+                        </label>
+                </div>
     
                 <button class="button" type="submit">Предложить новость</button>
     

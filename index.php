@@ -108,21 +108,23 @@
             <div class="news_category">
                 <h1>Главные новости</h1>
             </div>
-            <div class="twoGlavNews">
-                <?php if ($secondMainNews): ?>
-                    <a href="./pages/NewsPage.php?id=<?=$secondMainNews['id']?>"><img src="./imageNews/<?=$secondMainNews['glavImage']?>" alt=""></a>
-                    <a href="./pages/NewsPage.php?id=<?=$secondMainNews['id']?>"><h2><?=$secondMainNews['title']?></h2></a>
-                <?php else: ?>
-                    <p>Нет новостей для отображения.</p>
-                <?php endif; ?>
-            </div>
-            <hr>
-            <br>
-            <div class="oldGlavNews">
-                <?php foreach($oldestMainNews as $key): ?>
-                    <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><h3><?=$key['title']?></h3></a>
-                    <hr>
-                <?php endforeach; ?>
+            <div class="dop_news">
+                <div class="twoGlavNews">
+                    <?php if ($secondMainNews): ?>
+                        <a href="./pages/NewsPage.php?id=<?=$secondMainNews['id']?>"><img src="./imageNews/<?=$secondMainNews['glavImage']?>" alt=""></a>
+                        <a href="./pages/NewsPage.php?id=<?=$secondMainNews['id']?>"><h2><?=$secondMainNews['title']?></h2></a>
+                    <?php else: ?>
+                        <p>Нет новостей для отображения.</p>
+                    <?php endif; ?>
+                </div>
+                <hr>
+                <br>
+                <div class="oldGlavNews">
+                    <?php foreach($oldestMainNews as $key): ?>
+                        <a href="./pages/NewsPage.php?id=<?=$key['id']?>"><h3><?=$key['title']?></h3></a>
+                        <hr>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </div>

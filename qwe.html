@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" style="padding: 10px 0px;">
+           <p>Выберите роль пользователя</p>
+           <form>
+               <label>
+                   <input type="radio" name="role" value="user" id="User " checked/>
+                   <span>User</span>
+               </label>
+               <label>
+                   <input type="radio" name="role" value="editor" id="Editor"/>
+                   <span>Editor</span>
+               </label>
+               <label>
+                   <input type="radio" name="role" value="HR" id="HR"/>
+                   <span>HR</span>
+               </label>
+               <label>
+                   <input type="radio" name="role" value="admin" id="admin"/>
+                   <span>Admin</span>
+               </label>
+           </form>
+    </div>
+</body>
+</html>
+
+
+
+
+<style>
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+.container>p{
+    font-size: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+label {
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.375em;
+}
+
+input {
+    display: none;
+}
+
+input:checked + span {
+    background-color: rgba(255, 0, 0, 0.84);
+}
+
+span {
+    display: flex;
+    align-items: center;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em;
+    transition: 0.25s ease;
+    font-size: 20px;
+}
+
+span:hover {
+    background-color: rgba(255, 0, 0, 0.84);
+}
+
+span:before {
+    display: flex;
+    flex-shrink: 0;
+    content: "";
+    background-color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em rgba(255, 0, 0, 1);
+}
+
+</style>

@@ -85,35 +85,28 @@ endif;
                         <input type="password" name="password" id="name" required="" placeholder="пароль">
                     </div>
 
-                    <div style="padding: 10px 0px;">
-                        <p>Выберете роль пользователя</p>
-                        <div class="radio_cont">
-                            <div class="radio">
-                                <input class="checkbox-tools" type="radio" value="user" name="role" id="User" checked>
-                                <label for="User">
-                                    User
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <input class="checkbox-tools" type="radio" value="editor" name="role" id="Editor">
-                                <label for="Editor">
-                                    Editor
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <input class="checkbox-tools" type="radio" value="HR" name="role" id="HR">
-                                <label for="HR">
-                                    HR
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <input class="checkbox-tools" type="radio" value="admin" name="role" id="admin">
-                                <label for="admin">
-                                    Admin
-                                </label>
-                            </div>
-                        </div>
+                    <div class="container" style="padding: 10px 0px;">
+                        <p>Выберите роль пользователя</p>
+                        <form>
+                            <label class="role-label">
+                                <input type="radio" class="role-input" name="role" value="user" id="User " checked/>
+                                <span class="role-span">User </span>
+                            </label>
+                            <label class="role-label">
+                                <input type="radio" class="role-input" name="role" value="editor" id="Editor"/>
+                                <span class="role-span">Editor</span>
+                            </label>
+                            <label class="role-label">
+                                <input type="radio" class="role-input" name="role" value="HR" id="HR"/>
+                                <span class="role-span">HR</span>
+                            </label>
+                            <label class="role-label">
+                                <input type="radio" class="role-input" name="role" value="admin" id="admin"/>
+                                <span class="role-span">Admin</span>
+                            </label>
+                        </form>
                     </div>
+
 
 
                 </div>
