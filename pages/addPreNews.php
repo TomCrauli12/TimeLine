@@ -2,12 +2,17 @@
 session_start();
 
 require_once '../DB/DB.php';
+
 if (isset($_SESSION['id'])):
     
 else:
   header("Location: ../pages/identification.php");
 endif;
 
+$conn = DB::getConnection();
+
+$query = $conn->query('select * from categories');
+$category = $query->fetchAll();
 
 ?>
 
@@ -100,6 +105,19 @@ endif;
                             <input type="radio" class="role-input" id="1" name="glavNews" value="да"/>
                             <span class="role-span">Да</span>
                         </label>
+                </div>
+                <div class="category">
+                    <label for="pet-select">Выберете категорию</label>
+                        <select name="category" id="">
+                        <?php  if (!empty($category)) {
+                                foreach($category as $key): ?>
+                                    <option name="category" value="<?=$key['category']?>"><?=$key['category']?></option>
+                                <?php endforeach;
+                            } else {
+                                echo '<option value="">Нет доступных категорий</option>';
+                            }
+                        ?>
+                        </select>
                 </div>
     
                 <button class="button" type="submit">Предложить новость</button>

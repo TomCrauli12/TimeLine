@@ -23,7 +23,9 @@
 
         $glavNews = $_POST['glavNews'];
 
-        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews);
+        $category = $_POST['category'];
+
+        PreNews::addPreNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews, $category);
 
         header("Location: ../../pages/preNews.php");
     }
@@ -75,7 +77,9 @@
 
         $glavNews = $_GET['glavNews'];
 
-        PreNews::publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews);
+        $category = $_GET['category'];
+
+        PreNews::publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews, $category);
 
         header("Location: ../../pages/preNews.php");
     }

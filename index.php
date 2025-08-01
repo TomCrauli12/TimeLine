@@ -3,7 +3,7 @@
 
     require_once './DB/DB.php';
     require_once './core/Modules/UserModules.php';
-    require_once './core/Modules/UserModules.php';
+    require_once './core/Modules/categoryModules.php';
 
     $conn = DB::getConnection();
 
@@ -26,8 +26,14 @@
     $oldestMainNews = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
+    $CategoryNews = category::getInfoBlock("новости");
+
+
 
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,11 +55,7 @@
                 <nav class="menu">
                     <ul>
                     <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "HR")): ?>
-                        <li><a class="menu__item active" href="./index.php">Новости</a></li>
-                        <li><a class="menu__item" href="./pages/add_user.php">Добавить пользователя</a></li>
-                        <li><a class="menu__item" href="./pages/addPreNews.php">Создать новость</a></li>
-                        <li><a class="menu__item" href="./pages/preNews.php">Предложенные новости</a></li>
-                        <li><a class="menu__item" href="./pages/user_list.php">Список пользователей</a></li>
+                        <li><a class="menu__item" href="./pages/adminPanel.php">админ панель</a></li>
                     <?php elseif (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "editor")): ?>
                         <li><a class="menu__item" href="./pages/addPreNews.php">Создать новость</a></li>
                         <li><a class="menu__item" href="./pages/preNews.php">Предложенные новости</a></li>
@@ -130,6 +132,14 @@
     </div>
     </section>
     
+
+
+
+
+
+<?php $count = 0; foreach($CategoryNews as $key): ?>
+    <h1><a href="./pages/NewsPage.php?id=<?=$key['id']?>"><?=$key['title']?></a></h1>
+<?php endforeach; ?>
 
     <div class="category">
         <h1>Новости</h1>

@@ -85,6 +85,7 @@ endif;
             <p>Автор: <?=$userdata['name']?></p>
             <p>Роль автора: <?=$userdata['role']?></p>
             <p>Новость предожена: <?=$key['date']?></p>
+            <p>Категория: <?=$key['category']?></p>
             <p>Главная новость: <?=$key['glavNews']?></p>
             <br>
             <div class="admin_buttons">

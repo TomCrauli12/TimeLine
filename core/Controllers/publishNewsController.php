@@ -10,7 +10,7 @@ if ($_GET['action'] == "publishNews") {
     $preNewsId = $_GET['id'];
 
     $conn = DB::getConnection();
-    $query = $conn->prepare("SELECT `title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `glavNews` FROM PrePosts WHERE id = ?");
+    $query = $conn->prepare("SELECT `title`, `description`, `shortDescription`, `glavImage`, `imageTwo`, `imageThree`, `author`, `glavNews`, `category` FROM PrePosts WHERE id = ?");
     $query->execute([$preNewsId]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -24,8 +24,9 @@ if ($_GET['action'] == "publishNews") {
         $author = $data['author'];
         $date = date('Y-m-d H:i');
         $glavNews = $data['glavNews'];
+        $category = $data['category'];
 
-        PreNews::publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews);
+        PreNews::publishNews($title, $description, $shortDescription, $glavImage, $imageTwo, $imageThree, $author, $date, $glavNews, $category);
 
         $deleteQuery = $conn->prepare("DELETE FROM PrePosts WHERE id = ?");
         $deleteQuery->execute([$preNewsId]);
