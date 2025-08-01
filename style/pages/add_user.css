@@ -4,8 +4,6 @@
 
 form {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
 }
 
 .role-label {
@@ -49,4 +47,158 @@ form {
     margin-right: 0.375em;
     transition: 0.25s ease;
     box-shadow: inset 0 0 0 0.125em rgba(255, 0, 0, 1);
+}
+
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --tiny-font-size: 0.6rem;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+
+
+.form {
+  margin: 0 1.5rem;
+  display: flex;
+}
+
+.form__content {
+  display: flex;
+  row-gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  border: 2.5px solid var(--black-color);
+  justify-content: space-between;
+}
+
+h1 {
+  position: relative;
+  display: grid;
+  place-items: center;
+  place-content: center;
+}
+
+.form__input,
+.form__label,
+.form__submit {
+  border: 0;
+  outline: none;
+  font-size: var(--normal-font-size);
+  font-family: var(--body-font);
+  color: black;
+}
+
+.form__box {
+  width: 19.5rem;
+  height: 3.75rem;
+  position: relative;
+}
+
+.form__shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  background-color: var(--black-color);
+}
+
+.form__input {
+  position: absolute;
+  border: 2.5px solid var(--black-color);
+  background-color: var(--white-color);
+  border-radius: 0.25rem;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  padding: 1.125rem;
+  transition: transform 0.3s;
+}
+
+.form__input::placeholder {
+  transition: opacity 0.5s;
+}
+
+.form__label {
+  z-index: 100;
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  font-size: var(--tiny-font-size);
+  font-weight: 600;
+  transition: 0.2s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.form__button {
+  border-radius: 0.25rem;
+}
+
+.form__submit {
+  padding: 0.875rem 2.5rem;
+  color: var(--black-color);
+  border: 2.5px solid var(--black-color);
+  background-color: var(--white-color);
+  border-radius: 0.25rem;
+  transition: transform 0.3s;
+  transform: translate(-6px, -6px);
+  cursor: pointer;
+}
+
+.form__submit:hover {
+  border: 2.5px solid var(--black-color);
+  transform: translate(0px);
+}
+
+.form__input:focus::placeholder {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.form__input:focus,
+.form__input:not(:placeholder-shown).form__input:not(:focus) {
+  transform: translate(-8px, -8px);
+  padding: 28px 18px 18px;
+  animation: input-animation 0.5s;
+}
+
+.form__input:focus + .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) + .form__label {
+  opacity: 1;
+  top: 2px;
+  left: 12px;
+  transition: 0.3s;
+}
+
+@keyframes input-animation {
+  0% {
+    transform: translate(0);
+  }
+  40% {
+    transform: translate(-9px, -9px);
+  }
+  60% {
+    transform: translate(-7px, -7px);
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .form__content,
+  .form__box {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 968px) {
+  .form__content {
+    zoom: 1.1;
+  }
 }

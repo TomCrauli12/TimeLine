@@ -90,7 +90,7 @@ ul {
         
         color: #fff;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 1,5vw;
         white-space: nowrap;
         
         text-transform: uppercase;
@@ -162,14 +162,13 @@ ul {
     transform: translate(0,0);
   }
 }
-
-header {
+header{
+  background-color: black;
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 2vw 5vw;
-    background-color: black;
 }
 .logo > h1 > a {
     font-size: 2.5vw;

@@ -67,57 +67,62 @@ endif;
     </header>
 
 
-<form method="post" action="../core/Controllers/UserController.php?action=register">
-                <div class="theme">
-                    <h1>Добавить пользователя</h1>
-                    <div class="input-group">
-                        <label>Логин</label>
-                        <input type="text" name="login" id="name" required="" placeholder="логин">
-                    </div>
+<div class="form_q">
+    <form method="post" action="../core/Controllers/UserController.php?action=register" class="form__content">
+    <div class="one">
+        <h1>Добавить пользователя</h1>
+            
+            <div class="form__box">
+                <input type="text" name="login" class="form__input" required placeholder="логин">
+                <label for="login" class="form__label">Логин</label>
+                <div class="form__shadow"></div>
+            </div>
     
-                    <div class="input-group">                    
-                        <label>Никнейм</label>
-                        <input type="text" name="name" id="name" required="" placeholder="UserName">
-                    </div>
+            <div class="form__box">
+                <input type="text" name="name" class="form__input" required placeholder="User Name">
+                <label for="name" class="form__label">Никнейм</label>
+                <div class="form__shadow"></div>
+            </div>
+    
+            <div class="form__box">
+                <input type="password" name="password" class="form__input" required placeholder="пароль">
+                <label for="password" class="form__label">Пароль</label>
+                <div class="form__shadow"></div>
+            </div>
+    </div> 
+    <div class="two">
+        <p>Выберите роль пользователя</p>
+        <div class="role_box">
+            <label class="role-label">
+                <input type="radio" class="role-input" name="role" value="user" id="User " checked/>
+                <span class="role-span">User </span>
+            </label>
+            <label class="role-label">
+                <input type="radio" class="role-input" name="role" value="editor" id="Editor"/>
+                <span class="role-span">Editor</span>
+            </label>
+            <label class="role-label">
+                <input type="radio" class="role-input" name="role" value="HR" id="HR"/>
+                <span class="role-span">HR</span>
+            </label>
+            <label class="role-label">
+                <input type="radio" class="role-input" name="role" value="admin" id="admin"/>
+                <span class="role-span">Admin</span>
+            </label>
+    </div>
+    </div>   
+    <div class="three">
+        <div class="form__button">
+            <button class="form__submit" type="submit">Создать пользователя</button>
+        </div>
+    
+        <div class="back">
+            <a href="../index.php">Вернуться назад</a>
+        </div>
+    </div>
 
-                    <div class="input-group">                    
-                        <label>Пароль</label>
-                        <input type="password" name="password" id="name" required="" placeholder="пароль">
-                    </div>
-
-                    <div class="container" style="padding: 10px 0px;">
-                        <p>Выберите роль пользователя</p>
-                        <form>
-                            <label class="role-label">
-                                <input type="radio" class="role-input" name="role" value="user" id="User " checked/>
-                                <span class="role-span">User </span>
-                            </label>
-                            <label class="role-label">
-                                <input type="radio" class="role-input" name="role" value="editor" id="Editor"/>
-                                <span class="role-span">Editor</span>
-                            </label>
-                            <label class="role-label">
-                                <input type="radio" class="role-input" name="role" value="HR" id="HR"/>
-                                <span class="role-span">HR</span>
-                            </label>
-                            <label class="role-label">
-                                <input type="radio" class="role-input" name="role" value="admin" id="admin"/>
-                                <span class="role-span">Admin</span>
-                            </label>
-                        </form>
-                    </div>
-
-
-
-                </div>
-                <div class="batton">
-                    <button class="button" type="submit">Создать пользователя</button>
-                    
-                    <div class="back">
-                        <a href="../index.php">Вернуться назад</a>
-                    </div>
-                </div>
-            </form>
+    </form>
+</div>
             
 </body>
 </html>
